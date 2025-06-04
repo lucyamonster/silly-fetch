@@ -1,0 +1,23 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cargoRemoteBuild",
+            "type": "shell",
+            "command": "cargo remote -c -- build --bin=${config:myExtension.project_name} --package=${config:myExtension.project_name} --message-format=json --color=always && patchelf target/debug/${config:myExtension.project_name} --set-interpreter /usr/lib64/ld-linux-x86-64.so.2"
+        },
+        {
+            "label": "prepareExecuteDirRemoteBuild",
+            "type": "shell",
+            "command": "./prepareExecuteDir.sh",
+            "dependsOn": "cargoRemoteBuild"
+        },
+        {
+            "label": "prepareExecuteDir",
+            "type": "shell",
+            "command": "./prepareExecuteDir.sh"
+        }
+    ]
+}
