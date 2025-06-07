@@ -23,7 +23,7 @@
                 "args": [
                     "build",
                     "--bin=${config:myExtension.project_name}",
-                    "--package=${config:myExtension.project_name}"
+                    "--package=${config:myExtension.project_name}",
                 ],
                 "filter": {
                     "name": "${config:myExtension.project_name}",
